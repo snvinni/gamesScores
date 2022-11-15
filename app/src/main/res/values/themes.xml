@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.WordCupGames" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimaryVariant">@color/red_bordo</item>
+        <item name="colorOnPrimary">@color/red_bordo</item>
+        <item name="background">@drawable/gradient</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/red_bordo</item>
+        <item name="colorSecondaryVariant">@color/red_bordo</item>
+        <item name="colorOnSecondary">@color/red_bordo</item>
+        <!-- Status bar color. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>
