@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimaryVariant">@color/red_bordo</item>
         <item name="colorOnPrimary">@color/red_bordo</item>
-        <item name="background">@drawable/gradient</item>
+        <item name="background">@drawable/red_gradient</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/red_bordo</item>
         <item name="colorSecondaryVariant">@color/red_bordo</item>
