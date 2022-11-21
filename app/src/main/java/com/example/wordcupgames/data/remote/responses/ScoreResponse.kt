@@ -12,12 +12,12 @@ data class ScoreResponse(
     @SerializedName("fullTime")
     val fullTime: TeamScoreResponse,
     @SerializedName("penalties")
-    val penalties: TeamScoreResponse
+    val penalties: TeamScoreResponse?
 )
 
 fun ScoreResponse.toModel() = Score(
     winner,
     duration,
     fullTime.toModel(),
-    penalties.toModel()
+    penalties?.toModel()
 )

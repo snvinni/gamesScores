@@ -9,11 +9,12 @@ data class CompetitionResponse(
     @SerializedName("name")
     val name: String,
     @SerializedName("code")
-    val code: String,
+    val
+    code: String?,
     @SerializedName("type")
-    val type: String,
+    val type: String?,
     @SerializedName("emblem")
-    val emblem: String,
+    val emblem: String?,
 )
 fun CompetitionResponse.toModel() = Competition(
     id,

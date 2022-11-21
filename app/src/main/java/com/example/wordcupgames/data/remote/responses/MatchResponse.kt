@@ -7,7 +7,7 @@ data class MatchResponse(
     @SerializedName("id")
     val id: Int,
     @SerializedName("area")
-    val area: AreaResponse,
+    val area: AreaResponse?,
     @SerializedName("competition")
     val competition: CompetitionResponse,
     @SerializedName("season")
@@ -17,7 +17,7 @@ data class MatchResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("venue")
-    val stadium: String,
+    val stadium: String?,
     @SerializedName("matchday")
     val matchDay: Int,
     @SerializedName("stage")
@@ -36,7 +36,7 @@ data class MatchResponse(
 
 fun MatchResponse.toModel() = Matches(
     id,
-    area.toModel(),
+    area?.toModel(),
     competition.toModel(),
     season.toModel(),
     utcDate,

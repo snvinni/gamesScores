@@ -2,12 +2,12 @@ package com.example.wordcupgames.model
 
 data class Matches(
     val id: Int,
-    val area: Area,
+    val area: Area?,
     val competition: Competition,
     val season: Season,
     val utcDate: String,
     val status: String,
-    val stadium: String,
+    val stadium: String?,
     val matchDay: Int,
     val competitionStage: String,
     val competitionGroup: String,

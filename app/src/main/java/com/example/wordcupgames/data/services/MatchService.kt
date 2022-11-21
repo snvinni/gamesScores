@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface MatchService {
 
-    @GET("v4/matches")
+    @GET("v2/matches")
     suspend fun getMatches(
         @Query("dateFrom") dateFrom: String,
         @Query("dateTo") dateTo: String,
