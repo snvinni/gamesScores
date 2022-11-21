@@ -1,5 +1,6 @@
 package com.example.wordcupgames.di.modules
 
+import com.example.wordcupgames.data.services.MatchService
 import com.example.wordcupgames.data.remote.interceptors.ScoresRequestInterceptor
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ object NetworkModule {
             .Builder()
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("http://api.football-data.org/")
+            .baseUrl("https://api.football-data.org/")
             .build()
     }
 
@@ -41,4 +42,9 @@ object NetworkModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun provideMatchService(retrofit: Retrofit): MatchService {
+        return retrofit.create(MatchService::class.java)
+    }
 }

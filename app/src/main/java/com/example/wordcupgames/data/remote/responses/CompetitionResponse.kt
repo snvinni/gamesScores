@@ -1,5 +1,6 @@
 package com.example.wordcupgames.data.remote.responses
 
+import com.example.wordcupgames.model.Competition
 import com.google.gson.annotations.SerializedName
 
 data class CompetitionResponse(
@@ -13,4 +14,11 @@ data class CompetitionResponse(
     val type: String,
     @SerializedName("emblem")
     val emblem: String,
+)
+fun CompetitionResponse.toModel() = Competition(
+    id,
+    name,
+    code,
+    type,
+    emblem
 )

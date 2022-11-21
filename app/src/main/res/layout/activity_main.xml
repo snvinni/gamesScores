@@ -3,17 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".view.main.MainActivity">
 
     <include
+        android:id="@+id/toolbar"
         layout="@layout/layout_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_scores"
         android:layout_width="match_parent"
-        tools:listitem="@layout/layout_card_games"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:itemCount="2"
+        tools:listitem="@layout/layout_card_games" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ALOO"
+        android:textStyle="bold"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
