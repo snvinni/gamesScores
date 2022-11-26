@@ -1,22 +1,18 @@
 package com.example.wordcupgames.view.main
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordcupgames.R
 import com.example.wordcupgames.databinding.ActivityMainBinding
-import com.example.wordcupgames.model.Date
-import com.example.wordcupgames.util.collectWithLifecycle
 import com.example.wordcupgames.view.adapters.MatchesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.observeOn
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -37,9 +33,6 @@ class MainActivity : AppCompatActivity() {
         setupAdapter()
         setupObservers()
         setStatusBarGradiant(this)
-        binding.btn.setOnClickListener {
-            viewModel.loadMatches(dateFrom = "2022-11-20", dateTo = "2022-11-21", competition = "WC")
-        }
     }
 
     private fun setupObservers() {

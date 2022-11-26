@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.WordCupGames" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.WordCupGames" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimaryVariant">@color/red_bordo</item>
         <item name="colorOnPrimary">@color/red_bordo</item>
@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
