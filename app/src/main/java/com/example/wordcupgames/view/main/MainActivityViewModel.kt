@@ -19,22 +19,29 @@ class MainActivityViewModel @Inject constructor(
     private val repository: MatchRepository,
 ) : ViewModel() {
 
-    val matches = MutableLiveData<List<Matches>>()
+    private val _uiState = MutableStateFlow(
+        MatchesUiState(matches = mutableListOf()),
+    )
+    val uiState: StateFlow<MatchesUiState> = _uiState.asStateFlow()
 
     init {
-        if (matches.value.isNullOrEmpty()) {
-            loadMatches(dateFrom = "2022-11-20", dateTo = "2022-11-21", competition = "WC")
+        if (uiState.value.matches.isEmpty()) {
+            loadMatches(dateFrom = "2022-11-25", dateTo = "2022-11-26", competition = "WC")
         }
     }
 
-    fun loadMatches(dateFrom: String, dateTo: String, competition: String) {
+    private fun loadMatches(dateFrom: String, dateTo: String, competition: String) {
 
         viewModelScope.launch {
             repository.getMatches(dateFrom, dateTo, competition).let { result ->
                 when (result) {
-                    is MatchResultCall.Success -> matches.value = result.data
+                    is MatchResultCall.Success -> handleLoadMatchesSuccess(result.data)
 
-                    is MatchResultCall.Error -> matches.value = listOf()
+                    is MatchResultCall.Error -> _uiState.update {
+                        it.copy(
+                            matches = listOf()
+                        )
+                    }
                 }
 
             }
@@ -42,12 +49,12 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
-    /* private fun handleLoadMatchesSuccess(matches: List<Matches>) {
+    private fun handleLoadMatchesSuccess(matches: List<Matches>) {
          _uiState.update {
              it.copy(
                  matches = matches
              )
          }
 
-     }*/
+     }
 }

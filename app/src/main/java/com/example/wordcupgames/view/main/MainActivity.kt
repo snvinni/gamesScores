@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordcupgames.R
 import com.example.wordcupgames.databinding.ActivityMainBinding
+import com.example.wordcupgames.util.collectWithLifecycle
 import com.example.wordcupgames.view.adapters.MatchesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,9 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        viewModel.matches.observe(this, Observer {
-            matchesAdapter.submitList(it)
-        })
+        viewModel.uiState.collectWithLifecycle(this) { state ->
+            handleRequest(state)
+        }
     }
 
     private fun handleRequest(state: MatchesUiState) {
