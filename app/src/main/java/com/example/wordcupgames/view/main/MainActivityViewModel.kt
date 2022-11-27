@@ -1,6 +1,6 @@
 package com.example.wordcupgames.view.main
 
-import androidx.lifecycle.MutableLiveData
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wordcupgames.data.remote.MatchResultCall
@@ -12,8 +12,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
+@SuppressLint("NewApi")
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val repository: MatchRepository,
@@ -24,13 +26,22 @@ class MainActivityViewModel @Inject constructor(
     )
     val uiState: StateFlow<MatchesUiState> = _uiState.asStateFlow()
 
+    private val _dateState = MutableStateFlow(
+        DateState(currentDate = LocalDate.now())
+    )
+    val dateState: StateFlow<DateState> = _dateState.asStateFlow()
+
     init {
         if (uiState.value.matches.isEmpty()) {
-            loadMatches(dateFrom = "2022-11-25", dateTo = "2022-11-26", competition = "WC")
+            loadMatches(
+                dateFrom = dateState.value.currentDate.toString(),
+                dateTo = dateState.value.currentDate.toString(),
+                competition = "WC"
+            )
         }
     }
 
-    private fun loadMatches(dateFrom: String, dateTo: String, competition: String) {
+    fun loadMatches(dateFrom: String, dateTo: String, competition: String) {
 
         viewModelScope.launch {
             repository.getMatches(dateFrom, dateTo, competition).let { result ->
@@ -50,11 +61,36 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun handleLoadMatchesSuccess(matches: List<Matches>) {
-         _uiState.update {
-             it.copy(
-                 matches = matches
-             )
-         }
+        _uiState.update {
+            it.copy(
+                matches = matches
+            )
+        }
 
-     }
+    }
+
+    fun handleNextDay(currentDate: LocalDate): String {
+        val newDate = currentDate.plusDays(1)
+
+        _dateState.update {
+            it.copy(
+                currentDate = newDate
+            )
+        }
+        loadMatches(newDate.toString(), newDate.toString(), "WC")
+        return newDate.toString()
+    }
+
+    fun handleBeforeDay(currentDate: LocalDate): String {
+        val newDate = currentDate.plusDays(1)
+
+        _dateState.update {
+            it.copy(
+                currentDate = newDate.minusDays(1)
+            )
+        }
+        loadMatches(newDate.toString(), newDate.toString(), "WC")
+        return newDate.toString()
+    }
+
 }

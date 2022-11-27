@@ -31,7 +31,7 @@ class MatchesAdapter : ListAdapter<Matches, MatchesAdapter.ViewHolder>(diffCallb
             tvGuestTeam.text = match.awayTeam.name
             tvHomeTeamScore.text = match.score.fullTime.homeTeam.toString()
             tvAwayTeamScore.text = match.score.fullTime.awayTeam.toString()
-            tvMatchTime.text = match.score.duration
+            tvMatchTime.text = match.status
 
         }
     }

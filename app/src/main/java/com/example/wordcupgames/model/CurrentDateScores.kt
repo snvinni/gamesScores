@@ -1,6 +1,6 @@
 package com.example.wordcupgames.model
 
-data class Date(
+data class CurrentDateScores(
     val dateFrom: String,
     val dateTo: String
 )
