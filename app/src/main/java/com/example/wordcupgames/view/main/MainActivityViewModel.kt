@@ -82,11 +82,11 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun handleBeforeDay(currentDate: LocalDate): String {
-        val newDate = currentDate.plusDays(1)
+        val newDate = currentDate.minusDays(1)
 
         _dateState.update {
             it.copy(
-                currentDate = newDate.minusDays(1)
+                currentDate = newDate
             )
         }
         loadMatches(newDate.toString(), newDate.toString(), "WC")

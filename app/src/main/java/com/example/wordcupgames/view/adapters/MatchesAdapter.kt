@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordcupgames.R
 import com.example.wordcupgames.databinding.LayoutCardGamesBinding
 import com.example.wordcupgames.model.Matches
+import com.example.wordcupgames.util.formatTo
+import com.example.wordcupgames.util.toDate
 
 class MatchesAdapter : ListAdapter<Matches, MatchesAdapter.ViewHolder>(diffCallback) {
 
@@ -27,13 +30,23 @@ class MatchesAdapter : ListAdapter<Matches, MatchesAdapter.ViewHolder>(diffCallb
 
         fun bind(match: Matches) = with(binding) {
 
+            val context = root.context
+
             tvHomeTeam.text = match.homeTeam.name
             tvGuestTeam.text = match.awayTeam.name
             tvHomeTeamScore.text = match.score.fullTime.homeTeam.toString()
             tvAwayTeamScore.text = match.score.fullTime.awayTeam.toString()
-            tvMatchTime.text = match.status
-
+            when(match.status) {
+                "FINISHED" -> tvMatchTime.text = match.status
+                "IN_PLAY" -> tvMatchTime.text = context.getText(R.string.game_in_progress)
+                else -> tvMatchTime.text = match.utcDate.toDate()?.formatTo(DATE_FORMAT)
+            }
         }
+
+        companion object {
+            private const val DATE_FORMAT = "HH:mm"
+        }
+
     }
 
     companion object {
@@ -51,5 +64,4 @@ class MatchesAdapter : ListAdapter<Matches, MatchesAdapter.ViewHolder>(diffCallb
 
         }
     }
-
 }

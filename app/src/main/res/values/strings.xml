@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Word Cup Games</string>
+    <string name="game_in_progress">Em andamento</string>
 </resources>
