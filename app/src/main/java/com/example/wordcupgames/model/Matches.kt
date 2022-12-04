@@ -10,7 +10,7 @@ data class Matches(
     val stadium: String?,
     val matchDay: Int,
     val competitionStage: String,
-    val competitionGroup: String,
+    val competitionGroup: String?,
     val lastUpdated: String,
     val score: Score,
     val homeTeam: Team,

@@ -23,7 +23,7 @@ data class MatchResponse(
     @SerializedName("stage")
     val competitionStage: String,
     @SerializedName("group")
-    val competitionGroup: String,
+    val competitionGroup: String?,
     @SerializedName("lastUpdated")
     val lastUpdated: String,
     @SerializedName("score")
