@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    app:justifyContent="space_between"
+    app:alignItems="center"
     android:layout_height="64dp"
     android:background="@drawable/red_gradient"
     android:orientation="horizontal">
@@ -11,17 +13,16 @@
         android:id="@+id/btn_navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@null"
+        android:padding="32dp"
+        android:background="@drawable/bg_ripple_accent"
         android:src="@drawable/ic_navigation" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:height="1dp"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@drawable/bg_ripple_accent"
         android:src="@drawable/ic_arrow_back" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -29,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
         tools:text="Hoje"
         android:textAlignment="center"
         android:textColor="@color/white" />
@@ -37,22 +37,22 @@
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@drawable/bg_ripple_accent"
         android:src="@drawable/ic_arrow_forward"
         app:iconGravity="end" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_favorite"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:padding="32dp"
+        android:background="@drawable/bg_ripple_accent"
         android:src="@drawable/ic_star"
         app:iconGravity="end" />
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.flexbox.FlexboxLayout>
 
 
