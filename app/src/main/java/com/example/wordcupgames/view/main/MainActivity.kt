@@ -13,7 +13,7 @@ import com.example.wordcupgames.databinding.ActivityMainBinding
 import com.example.wordcupgames.util.collectWithLifecycle
 import com.example.wordcupgames.view.adapters.MatchesAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -57,14 +57,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolBar() {
-        binding.toolbar.tvDate.text = viewModel.dateState.value.currentDate.toString()
+        val dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT)
+
+        binding.toolbar.tvDate.text = viewModel.dateState.value.currentDate.format(dateTimeFormatter)
         binding.toolbar.btnNext.setOnClickListener {
             binding.toolbar.tvDate.text =
-                viewModel.handleNextDay(viewModel.dateState.value.currentDate)
+                viewModel.handleNextDay(viewModel.dateState.value.currentDate).format(dateTimeFormatter)
         }
         binding.toolbar.btnBack.setOnClickListener {
             binding.toolbar.tvDate.text =
-                viewModel.handleBeforeDay(viewModel.dateState.value.currentDate)
+                viewModel.handleBeforeDay(viewModel.dateState.value.currentDate).format(dateTimeFormatter)
         }
     }
 

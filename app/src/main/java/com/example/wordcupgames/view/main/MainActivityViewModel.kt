@@ -69,7 +69,7 @@ class MainActivityViewModel @Inject constructor(
 
     }
 
-    fun handleNextDay(currentDate: LocalDate): String {
+    fun handleNextDay(currentDate: LocalDate): LocalDate {
         val newDate = currentDate.plusDays(1)
 
         _dateState.update {
@@ -78,10 +78,10 @@ class MainActivityViewModel @Inject constructor(
             )
         }
         loadMatches(newDate.toString(), newDate.toString(), "WC")
-        return newDate.toString()
+        return newDate
     }
 
-    fun handleBeforeDay(currentDate: LocalDate): String {
+    fun handleBeforeDay(currentDate: LocalDate): LocalDate {
         val newDate = currentDate.minusDays(1)
 
         _dateState.update {
@@ -90,7 +90,7 @@ class MainActivityViewModel @Inject constructor(
             )
         }
         loadMatches(newDate.toString(), newDate.toString(), "WC")
-        return newDate.toString()
+        return newDate
     }
 
 }
